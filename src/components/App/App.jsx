@@ -4,7 +4,8 @@ import { nanoid } from 'nanoid';
 import Form from '../Form';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
-import { addContact, delContact, addFilter } from 'redux/store';
+import { addContact, delContact} from 'redux/items/slice';
+import { addFilter } from 'redux/filter/slice';
 import { Wrapper } from './App.styled';
 
 export default function App() {
