@@ -11,9 +11,8 @@ import { setEditingID } from 'redux/editingID/slice';
 import { setEditingName } from 'redux/editingName/slice';
 import { setEditingNumber } from 'redux/editingNumber/slice';
 
-import { addContact, delContact, editContact } from 'redux/items/slice';
+import { addContact, delContact } from 'redux/items/slice';
 import { addFilter } from 'redux/filter/slice';
-// import { editContact } from 'redux/edit/slice';
 import { Wrapper } from './App.styled';
 
 export default function App() {
@@ -36,7 +35,7 @@ export default function App() {
 
   const editingName = useSelector(state => state.editingName);
   const editingNumber = useSelector(state => state.editingNumber);
-  
+
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -83,14 +82,9 @@ export default function App() {
     dispatch(editing(true));
     dispatch(setEditingID(id));
     dispatch(setEditingName(name));
-    // console.log(editingName);
+
     dispatch(setEditingNumber(number));
-    // console.log(editingNumber);
   };
-  // const editContact = id => {
-  //   // setContacts(contacts.filter(contact => contact.id !== id));
-  //   dispatch(editContact());
-  // };
 
   return (
     <Wrapper>

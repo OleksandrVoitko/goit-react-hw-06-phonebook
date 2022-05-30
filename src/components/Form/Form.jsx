@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editing } from 'redux/editing/slice';
 import { editContact } from 'redux/items/slice';
