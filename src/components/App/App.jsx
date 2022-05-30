@@ -4,8 +4,16 @@ import { nanoid } from 'nanoid';
 import Form from '../Form';
 import ContactList from '../ContactList';
 import Filter from '../Filter';
-import { addContact, delContact} from 'redux/items/slice';
+import EditModal from '../EditModal/EditModal';
+
+import { editing } from 'redux/editing/slice';
+import { setEditingID } from 'redux/editingID/slice';
+import { setEditingName } from 'redux/editingName/slice';
+import { setEditingNumber } from 'redux/editingNumber/slice';
+
+import { addContact, delContact, editContact } from 'redux/items/slice';
 import { addFilter } from 'redux/filter/slice';
+// import { editContact } from 'redux/edit/slice';
 import { Wrapper } from './App.styled';
 
 export default function App() {
@@ -25,11 +33,16 @@ export default function App() {
   // }, []);
   const contacts = useSelector(state => state.items);
   const filter = useSelector(state => state.filter);
+
+  const editingName = useSelector(state => state.editingName);
+  const editingNumber = useSelector(state => state.editingNumber);
+  
   const dispatch = useDispatch();
 
   // useEffect(() => {
   //   localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts]);
+  // console.log('editingName ->', editingName);
 
   const formSubmitHandler = (name, number) => {
     const newContact = {
@@ -66,14 +79,36 @@ export default function App() {
     dispatch(delContact(id));
   };
 
+  const editingContact = (id, name, number) => {
+    dispatch(editing(true));
+    dispatch(setEditingID(id));
+    dispatch(setEditingName(name));
+    // console.log(editingName);
+    dispatch(setEditingNumber(number));
+    // console.log(editingNumber);
+  };
+  // const editContact = id => {
+  //   // setContacts(contacts.filter(contact => contact.id !== id));
+  //   dispatch(editContact());
+  // };
+
   return (
     <Wrapper>
       <h2>Phone book</h2>
-      <Form onSubmit={formSubmitHandler} />
+      <EditModal>
+        <Form
+          onSubmit={formSubmitHandler}
+          textButton="Save"
+          editingName={editingName}
+          editingNumber={editingNumber}
+        />
+      </EditModal>
+      <Form onSubmit={formSubmitHandler} textButton="Add contact" />
       <h2>Contacts</h2>
       <Filter value={filter} onChange={filterHandler} />
       <ContactList
         contacts={getFilteredContacts()}
+        editingContact={editingContact}
         deleteContact={deleteContact}
       />
     </Wrapper>

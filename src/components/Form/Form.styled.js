@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const FormWrapper = styled.form`
   display: flex;
   flex-direction: column;
+  justify-content: center;
 `;
 export const Label = styled.label`
   font-weight: 500;
@@ -19,13 +20,14 @@ export const InputNumber = styled.input`
   color: teal;
 `;
 export const Button = styled.button`
+  width: 150px;
   border: none;
   border-radius: 3px;
   padding: 5px 5px;
   background-color: #2196f3;
   color: #fff;
   font-weight: 500px;
-  margin: 10px;
+  margin: auto; 
 
   cursor: pointer;
   outline: none;

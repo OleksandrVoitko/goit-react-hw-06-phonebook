@@ -1,19 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import ContactListItem from "../ContactListItem";
+import React from 'react';
+import PropTypes from 'prop-types';
+import ContactListItem from '../ContactListItem';
+import { ContactsUl } from './ContactList.styled';
 
-const ContactList = ({ contacts, deleteContact }) => {
+const ContactList = ({ contacts, editingContact, deleteContact }) => {
   return (
-    <ul>
+    <ContactsUl>
       {contacts.map(({ id, name, number }) => (
         <ContactListItem
           key={id}
           name={name}
           number={number}
+          onClickEditingContact={() => editingContact(id, name, number)}
           onClickDeleteContact={() => deleteContact(id)}
         ></ContactListItem>
       ))}
-    </ul>
+    </ContactsUl>
   );
 };
 

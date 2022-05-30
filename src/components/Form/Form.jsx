@@ -1,24 +1,46 @@
-import { useState } from "react";
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { editing } from 'redux/editing/slice';
+import { editContact } from 'redux/items/slice';
 import {
   FormWrapper,
   Label,
   InputName,
   InputNumber,
   Button,
-} from "./Form.styled";
+} from './Form.styled';
 
-export default function Form({ onSubmit }) {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+export default function Form({
+  onSubmit,
+  textButton,
+  editingName = '',
+  editingNumber = '',
+}) {
+  // const isEditing = useSelector(state => state.isEditing);
+  const eID = useSelector(state => state.editingID);
 
-  const handleChange = (e) => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState(editingName);
+  const [number, setNumber] = useState(editingNumber);
+  // useEffect(() => {
+  //   if (isEditing) {
+  //     setName(editingName);
+  //     console.log(name);
+  //   }
+  // }, [isEditing]);
+
+  //useEffect (setName, setNumber)
+  // console.log('initialName ->', initialName);
+  // console.log('name', name);
+
+  const handleChange = e => {
     const { name, value } = e.currentTarget;
     switch (name) {
-      case "name":
+      case 'name':
         setName(value);
         break;
 
-      case "number":
+      case 'number':
         setNumber(value);
         break;
 
@@ -28,15 +50,22 @@ export default function Form({ onSubmit }) {
   };
 
   const reset = () => {
-    setName("");
-    setNumber("");
+    setName('');
+    setNumber('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    onSubmit(name, number);
-    reset();
+    if (textButton === 'Save') {
+      dispatch(editing(false));
+      dispatch(editContact());
+      console.log(eID);
+      reset();
+    } else {
+      onSubmit(name, number);
+      reset();
+    }
   };
 
   return (
@@ -65,7 +94,7 @@ export default function Form({ onSubmit }) {
           onChange={handleChange}
         />
       </Label>
-      <Button type="submit">Add contact</Button>
+      <Button type="submit">{textButton}</Button>
     </FormWrapper>
   );
 }

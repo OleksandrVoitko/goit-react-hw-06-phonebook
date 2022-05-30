@@ -1,14 +1,41 @@
-import React from "react";
-import { ContactItem, ContactDeleteButton } from "./ContactListItem.styled";
+import React from 'react';
+// import { useDispatch } from 'react-redux';
+import {
+  ContactItem,
+  WrapperButtonDiv,
+  ContactButton,
+  // ContactDeleteButton,
+} from './ContactListItem.styled';
 
-const ContactListItem = ({ id, name, number, onClickDeleteContact }) => {
+const ContactListItem = ({
+  id,
+  name,
+  number,
+  onClickEditingContact,
+  onClickDeleteContact,
+}) => {
   return (
-    <ContactItem key={id}>
-      {name}: {number}
-      <ContactDeleteButton type="submit" onClick={onClickDeleteContact}>
-        Delete
-      </ContactDeleteButton>
-    </ContactItem>
+    <>
+      <ContactItem key={id}>
+        {name}: {number}
+        <WrapperButtonDiv>
+          <ContactButton
+            color="#2196f3"
+            type="submit"
+            onClick={onClickEditingContact}
+          >
+            Edit
+          </ContactButton>
+          <ContactButton
+            color="red"
+            type="submit"
+            onClick={onClickDeleteContact}
+          >
+            Delete
+          </ContactButton>
+        </WrapperButtonDiv>
+      </ContactItem>
+    </>
   );
 };
 
