@@ -1,10 +1,9 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
+
 import {
   ContactItem,
   WrapperButtonDiv,
   ContactButton,
-  // ContactDeleteButton,
 } from './ContactListItem.styled';
 
 const ContactListItem = ({

@@ -30,6 +30,8 @@ export default function App() {
   //     setContacts(JSON.parse(localContacts));
   //   }
   // }, []);
+  const save = 'Save';
+  const add = 'Add contact';
   const contacts = useSelector(state => state.items);
   const filter = useSelector(state => state.filter);
 
@@ -41,7 +43,6 @@ export default function App() {
   // useEffect(() => {
   //   localStorage.setItem('contacts', JSON.stringify(contacts));
   // }, [contacts]);
-  // console.log('editingName ->', editingName);
 
   const formSubmitHandler = (name, number) => {
     const newContact = {
@@ -82,7 +83,6 @@ export default function App() {
     dispatch(editing(true));
     dispatch(setEditingID(id));
     dispatch(setEditingName(name));
-
     dispatch(setEditingNumber(number));
   };
 
@@ -92,12 +92,12 @@ export default function App() {
       <EditModal>
         <Form
           onSubmit={formSubmitHandler}
-          textButton="Save"
+          textButton={save}
           editingName={editingName}
           editingNumber={editingNumber}
         />
       </EditModal>
-      <Form onSubmit={formSubmitHandler} textButton="Add contact" />
+      <Form onSubmit={formSubmitHandler} textButton={add} />
       <h2>Contacts</h2>
       <Filter value={filter} onChange={filterHandler} />
       <ContactList

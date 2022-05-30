@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editing } from 'redux/editing/slice';
 import { editContact } from 'redux/items/slice';
@@ -16,22 +16,22 @@ export default function Form({
   editingName = '',
   editingNumber = '',
 }) {
-  // const isEditing = useSelector(state => state.isEditing);
   const eID = useSelector(state => state.editingID);
-
   const dispatch = useDispatch();
+  
   const [name, setName] = useState(editingName);
   const [number, setNumber] = useState(editingNumber);
-  // useEffect(() => {
-  //   if (isEditing) {
-  //     setName(editingName);
-  //     console.log(name);
-  //   }
-  // }, [isEditing]);
 
-  //useEffect (setName, setNumber)
-  // console.log('initialName ->', initialName);
-  // console.log('name', name);
+  const editingContact = {
+    id: eID,
+    name,
+    number,
+  };
+
+  useEffect(() => {
+    setName(editingName);
+    setNumber(editingNumber);
+  }, [editingName, editingNumber]);
 
   const handleChange = e => {
     const { name, value } = e.currentTarget;
@@ -59,8 +59,7 @@ export default function Form({
 
     if (textButton === 'Save') {
       dispatch(editing(false));
-      dispatch(editContact());
-      console.log(eID);
+      dispatch(editContact(editingContact));
       reset();
     } else {
       onSubmit(name, number);

@@ -11,7 +11,13 @@ export const itemsSlice = createSlice({
       return state.filter(item => item.id !== action.payload);
     },
     editContact(state, action) {
-      console.log('Edit contact is done');
+      state = state.map(item => {
+        if (item.id === action.payload.id) {
+          item.name = action.payload.name;
+          item.number = action.payload.number;
+        }
+        return item;
+      });
     },
   },
 });
