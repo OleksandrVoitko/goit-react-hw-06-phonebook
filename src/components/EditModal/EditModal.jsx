@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import { editing } from 'redux/editing/slice';
+import { resetEditState } from 'redux/edit/slice';
 import { editing } from 'redux/edit/slice';
 
 import cl from './EditModal.module.css';
@@ -17,6 +17,7 @@ const EditModal = ({ children }) => {
 
   const closeModal = () => {
     dispatch(editing(false));
+    dispatch(resetEditState());
   };
 
   return (

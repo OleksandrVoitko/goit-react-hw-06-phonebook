@@ -21,8 +21,18 @@ export const editSlice = createSlice({
     setEditingNumber(state, action) {
       state.editingNumber = action.payload;
     },
+    resetEditState(state, action) {
+      state.editingID = '';
+      state.editingName = '';
+      state.editingNumber = '';
+    },
   },
 });
 
-export const { editing, setEditingID, setEditingName, setEditingNumber } =
-  editSlice.actions;
+export const {
+  editing,
+  setEditingID,
+  setEditingName,
+  setEditingNumber,
+  resetEditState,
+} = editSlice.actions;

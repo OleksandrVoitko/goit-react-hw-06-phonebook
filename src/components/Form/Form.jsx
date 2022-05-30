@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { editing } from 'redux/editing/slice';
+
 import { editing } from 'redux/edit/slice';
+import { resetEditState } from 'redux/edit/slice';
 
 import { editContact } from 'redux/items/slice';
 import {
@@ -63,6 +64,7 @@ export default function Form({
       dispatch(editing(false));
       dispatch(editContact(editingContact));
       reset();
+      dispatch(resetEditState());
     } else {
       onSubmit(name, number);
       reset();
