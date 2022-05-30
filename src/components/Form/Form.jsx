@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { editing } from 'redux/editing/slice';
+// import { editing } from 'redux/editing/slice';
+import { editing } from 'redux/edit/slice';
+
 import { editContact } from 'redux/items/slice';
 import {
   FormWrapper,
@@ -16,7 +18,7 @@ export default function Form({
   editingName = '',
   editingNumber = '',
 }) {
-  const eID = useSelector(state => state.editingID);
+  const eID = useSelector(state => state.edit.editingID);
   const dispatch = useDispatch();
   
   const [name, setName] = useState(editingName);

@@ -6,10 +6,15 @@ import ContactList from '../ContactList';
 import Filter from '../Filter';
 import EditModal from '../EditModal/EditModal';
 
-import { editing } from 'redux/editing/slice';
-import { setEditingID } from 'redux/editingID/slice';
-import { setEditingName } from 'redux/editingName/slice';
-import { setEditingNumber } from 'redux/editingNumber/slice';
+// import { editing } from 'redux/editing/slice';
+// import { setEditingID } from 'redux/editingID/slice';
+// import { setEditingName } from 'redux/editingName/slice';
+// import { setEditingNumber } from 'redux/editingNumber/slice';
+
+import { editing } from 'redux/edit/slice';
+import { setEditingID } from 'redux/edit/slice';
+import { setEditingName } from 'redux/edit/slice';
+import { setEditingNumber } from 'redux/edit/slice';
 
 import { addContact, delContact } from 'redux/items/slice';
 import { addFilter } from 'redux/filter/slice';
@@ -35,8 +40,8 @@ export default function App() {
   const contacts = useSelector(state => state.items);
   const filter = useSelector(state => state.filter);
 
-  const editingName = useSelector(state => state.editingName);
-  const editingNumber = useSelector(state => state.editingNumber);
+  const editingName = useSelector(state => state.edit.editingName);
+  const editingNumber = useSelector(state => state.edit.editingNumber);
 
   const dispatch = useDispatch();
 
