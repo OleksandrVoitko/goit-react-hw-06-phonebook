@@ -2,13 +2,13 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { resetEditState } from 'redux/edit/slice';
-import { editing } from 'redux/edit/slice';
+import { editing, getIsEditing } from 'redux/edit/slice';
 
 import cl from './EditModal.module.css';
 
 const EditModal = ({ children }) => {
   const dispatch = useDispatch();
-  const isEditing = useSelector(state => state.edit.isEditing);
+  const isEditing = useSelector(getIsEditing);
 
   const rootClasses = [cl.editModal];
   if (isEditing) {

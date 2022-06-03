@@ -36,3 +36,7 @@ export const {
   setEditingNumber,
   resetEditState,
 } = editSlice.actions;
+
+//Selectors
+
+export const getIsEditing = state => state.edit.isEditing;

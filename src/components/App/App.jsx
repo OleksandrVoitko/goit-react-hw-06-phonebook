@@ -37,13 +37,19 @@ export default function App() {
   // }, []);
   const save = 'Save';
   const add = 'Add contact';
-  const contacts = useSelector(state => state.items);
+  const contactsItems = useSelector(state => state.items);
+  //преобразовати обєкт в маси
+  // удалити останній елемент масиву
+  const contacts = Object.values(contactsItems).slice(0, Object.values(contactsItems).length-1)
+  
+  
   const filter = useSelector(state => state.filter);
 
   const editingName = useSelector(state => state.edit.editingName);
   const editingNumber = useSelector(state => state.edit.editingNumber);
 
   const dispatch = useDispatch();
+  // console.log(Object.values(contacts).slice(0, Object.values(contacts).length-1));
 
   // useEffect(() => {
   //   localStorage.setItem('contacts', JSON.stringify(contacts));
