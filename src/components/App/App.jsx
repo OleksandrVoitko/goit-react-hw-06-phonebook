@@ -37,12 +37,11 @@ export default function App() {
   // }, []);
   const save = 'Save';
   const add = 'Add contact';
-  const contactsItems = useSelector(state => state.items);
+  const contacts = useSelector(state => state.items.items);
   //преобразовати обєкт в маси
   // удалити останній елемент масиву
-  const contacts = Object.values(contactsItems).slice(0, Object.values(contactsItems).length-1)
-  
-  
+  // const contacts = Object.values(contactsItems).slice(0, Object.values(contactsItems).length-1)
+
   const filter = useSelector(state => state.filter);
 
   const editingName = useSelector(state => state.edit.editingName);
